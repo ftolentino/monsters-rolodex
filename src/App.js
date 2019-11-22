@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { CardList } from './components/card-list/card-list.component';
 import { SearchBox } from './components/search-box/search-box.component';
-import { CodeBox } from './components/js-challenge/js-challenge.component';
+
 
 import './App.css';
 
@@ -13,7 +13,7 @@ class App extends Component {
     this.state = {
       monsters: [],
       searchField: '',
-      codeChallenge: ''
+      numberTimesTwo: ''
     };
 
   }
@@ -28,19 +28,18 @@ class App extends Component {
     this.setState({ searchField: e.target.value })
   }
 
-  codeBoxChange = (e) => {
-    console.log({ codeChallenge: e.target.value})
-    this.setState({ codeChallenge: e.target.value})
+  multiplyByTwo = (e) => {
+    this.setState({ numberTimesTwo: e.target.value * 2})
   }
 
   render() {
 		const { monsters, searchField} = this.state;
     const filteredMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()));
-    // const codeChallengeResult = codeChallenge.value 
     return (
       <div className="App">
         <h1>Monsters Rolodex </h1>
-        <CodeBox codeBoxChange={this.codeBoxChange}/>
+        <input type="text" onChange={this.multiplyByTwo} />
+        <p>{this.state.numberTimesTwo}</p>
         <SearchBox 
           placeholder='search monsters' 
           handleChange={this.handleChange}
